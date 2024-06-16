@@ -51,6 +51,11 @@ function ChatArea({ socket }) {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.nativeEvent.isComposing || e.key !== 'Enter') return
+    sendNewMessage("");
+  }
+
   const getMessages = async () => {
     try {
       dispatch(ShowLoader());
@@ -308,6 +313,7 @@ function ChatArea({ socket }) {
           placeholder="Type a message"
           className="w-[90%] border-0 h-full rounded-xl focus:border-none"
           value={newMessage}
+          onKeyDown={handleKeyDown}
           onChange={(e) => {
             setNewMessage(e.target.value);
             socket.emit("typing", {
