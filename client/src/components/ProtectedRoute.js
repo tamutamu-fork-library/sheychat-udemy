@@ -6,6 +6,9 @@ import { GetAllChats } from "../apicalls/chats";
 import { GetAllUsers, GetCurrentUser } from "../apicalls/users";
 import { HideLoader, ShowLoader } from "../redux/loaderSlice";
 import { SetAllUsers, SetUser, SetAllChats } from "../redux/userSlice";
+import io from "socket.io-client";
+
+const socket = io(process.env.REACT_APP_API_URL);
 
 function ProtectedRoute({ children }) {
   const { user } = useSelector((state) => state.userReducer);
@@ -79,6 +82,7 @@ function ProtectedRoute({ children }) {
           <i
             class="ri-logout-circle-r-line ml-5 text-xl cursor-pointer text-primary"
             onClick={() => {
+              socket.emit("went-offline", user._id)
               localStorage.removeItem("token");
               navigate("/login");
             }}
