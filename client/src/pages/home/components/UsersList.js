@@ -46,9 +46,6 @@ function UsersList({ searchKey, socket, onlineUsers }) {
   const getData = () => {
     // if search key is empty then return all chats else return filtered chats and users
     try {
-      console.log(searchKey);
-      console.log("--------------------------------------");
-      console.log(allChats);
       if (searchKey === "") {
         return allChats || [];
       }
@@ -57,6 +54,7 @@ function UsersList({ searchKey, socket, onlineUsers }) {
           user.name.toLowerCase().includes(searchKey.toLowerCase()) || []
       );
     } catch (error) {
+      console.log(error);
       return [];
     }
   };
