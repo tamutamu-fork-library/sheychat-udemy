@@ -19,6 +19,8 @@ function Home() {
       socket.emit("came-online", user._id);
 
       socket.on("online-users-updated", (users) => {
+        console.log("----------------------------");
+        console.log(users);
         setOnlineUsers(users);
       });
     }
