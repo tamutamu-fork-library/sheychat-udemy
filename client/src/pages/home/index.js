@@ -18,6 +18,7 @@ function Home() {
 
       socket.on("online-users-updated", (users) => {
         setOnlineUsers(users);
+        dispatch(SetAllUsers(users));
       });
     }
   }, [user]);
