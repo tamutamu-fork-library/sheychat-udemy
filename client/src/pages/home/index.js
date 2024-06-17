@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ChatArea from "./components/ChatArea";
 import UserSearch from "./components/UserSearch";
 import UsersList from "./components/UsersList";
+import { SetAllUsers } from "../redux/userSlice";
 import { io } from "socket.io-client";
 
 const socket = io(process.env.REACT_APP_API_URL);
@@ -10,6 +11,7 @@ function Home() {
   const [searchKey, setSearchKey] = React.useState("");
   const { selectedChat, user } = useSelector((state) => state.userReducer);
   const [onlineUsers, setOnlineUsers] = React.useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     // join the room
     if (user) {
