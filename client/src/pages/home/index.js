@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ChatArea from "./components/ChatArea";
 import UserSearch from "./components/UserSearch";
 import UsersList from "./components/UsersList";
-import { SetAllUsers } from "../redux/userSlice";
+import { SetAllUsers } from "../../redux/userSlice";
 import { io } from "socket.io-client";
 
 const socket = io(process.env.REACT_APP_API_URL);
