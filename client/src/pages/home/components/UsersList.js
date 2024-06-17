@@ -107,8 +107,10 @@ function UsersList({ searchKey, socket, onlineUsers }) {
   };
 
   const getUnreadMessages = (userObj) => {
-    const chat = allChats.find((chat) =>
-      chat.members.map((mem) => mem._id).includes(userObj._id)
+    const chat = allChats.find((chat) =>{
+      console.log(chat);
+      chat.members.map((mem) => mem._id).includes(userObj._id);
+    }
     );
     if (
       chat &&
