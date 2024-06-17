@@ -4,6 +4,7 @@ import ChatArea from "./components/ChatArea";
 import UserSearch from "./components/UserSearch";
 import UsersList from "./components/UsersList";
 import { SetAllUsers } from "../../redux/userSlice";
+import { GetAllUsers } from "../../apicalls/users";
 import { io } from "socket.io-client";
 
 const socket = io(process.env.REACT_APP_API_URL);
@@ -18,9 +19,9 @@ function Home() {
       socket.emit("join-room", user._id);
       socket.emit("came-online", user._id);
 
-      socket.on("online-users-updated", (users) => {
-        console.log("----------------------------");
-        console.log(users);
+      socket.on("online-users-updated", async (users) => {
+        const allUsersResponse = await GetAllUsers();
+        dispatch(SetAllUsers(allUsersResponse.data));
         setOnlineUsers(users);
       });
     }
