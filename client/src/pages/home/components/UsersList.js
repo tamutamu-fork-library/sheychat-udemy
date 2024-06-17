@@ -49,15 +49,10 @@ function UsersList({ searchKey, socket, onlineUsers }) {
       if (searchKey === "") {
         return allChats || [];
       }
-      const users = allUsers.filter(
+      return allUsers.filter(
         (user) =>
-          user.name.toLowerCase().includes(searchKey.toLowerCase()) || []
-      );
-
-      console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-      console.log(users);
-
-      return users;
+          user.name.toLowerCase().includes(searchKey.toLowerCase())
+      ) || [];
     } catch (error) {
       return [];
     }
