@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { GetAllChats } from "../../../apicalls/chats";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateNewChat } from "../../../apicalls/chats";
