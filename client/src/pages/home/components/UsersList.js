@@ -130,10 +130,11 @@ function UsersList({ searchKey, socket, onlineUsers }) {
   };
 
   useEffect(() => {
-    socket.on("receive-message", (message) => {
+    socket.on("receive-message", async (message) => {
       // if the chat area opened is not equal to chat in message , then increase unread messages by 1 and update last message
       const tempSelectedChat = store.getState().userReducer.selectedChat;
-      let tempAllChats = store.getState().userReducer.allChats;
+    //   let tempAllChats = store.getState().userReducer.allChats;
+      const tempAllChats = await GetAllChats();
       if (tempSelectedChat?._id !== message.chat) {
         const updatedAllChats = tempAllChats.map((chat) => {
           if (chat._id === message.chat) {
