@@ -47,8 +47,12 @@ function UsersList({ searchKey, socket, onlineUsers }) {
     // if search key is empty then return all chats else return filtered chats and users
     try {
       if (searchKey === "") {
+        console.log("@@ 1");
+        console.log(allChats);
         return allChats || [];
       }
+        console.log("@@ 2");
+        console.log(allUsers);
       return allUsers.filter(
         (user) =>
           user.name.toLowerCase().includes(searchKey.toLowerCase())
@@ -158,6 +162,8 @@ function UsersList({ searchKey, socket, onlineUsers }) {
   return (
     <div className="flex flex-col gap-3 mt-5 lg:w-96 xl:w-96 md:w-60 sm:w-60">
       {getData().map((chatObjOrUserObj) => {
+        console.log("@@ 3");
+        console.log(chatObjOrUserObj);
         let userObj = chatObjOrUserObj;
 
         if (chatObjOrUserObj.members) {
