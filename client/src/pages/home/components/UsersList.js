@@ -135,10 +135,10 @@ function UsersList({ searchKey, socket, onlineUsers }) {
       // if the chat area opened is not equal to chat in message , then increase unread messages by 1 and update last message
       const tempSelectedChat = store.getState().userReducer.selectedChat;
     //   let tempAllChats = store.getState().userReducer.allChats;
-      const tempAllChats = (await GetAllChats()).data;
-      console.log(tempAllChats);
+      let tempAllChats;
+      const tempAllChats2 = (await GetAllChats()).data;
       if (tempSelectedChat?._id !== message.chat) {
-        const updatedAllChats = tempAllChats.map((chat) => {
+        const updatedAllChats = tempAllChats2.map((chat) => {
           if (chat._id === message.chat) {
             return {
               ...chat,
